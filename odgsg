@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord Verification</title>
+</head>
+<body>
+    <h1>Choose an Option</h1>
+    <button onclick="verifyDiscord()">Verify Discord Account</button>
+    <button onclick="promptPassword()">Admin Access</button>
+
+    <div id="adminSection" style="display:none;">
+        <h2>Admin Panel</h2>
+        <button onclick="generateQRCode()">Generate QR Code</button>
+        <div id="qrcode"></div>
+    </div>
+
+    <div id="verifySection" style="display:none;">
+        <h2>Discord Verification</h2>
+        <button onclick="alert('Discord Account Verified!')">Verify</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+    <script>
+        function promptPassword() {
+            let password = prompt("Enter the Admin Password:");
+            if (password === "CumSock") {
+                document.getElementById('adminSection').style.display = 'block';
+            } else {
+                alert("Incorrect Password!");
+            }
+        }
+
+        function generateQRCode() {
+            QRCode.toDataURL(window.location.href, function (err, url) {
+                let img = document.createElement('img');
+                img.src = url;
+                document.getElementById('qrcode').innerHTML = '';
+                document.getElementById('qrcode').appendChild(img);
+                alert('QR Code Generated! Share this in the Discord server.');
+            });
+        }
+
+        function verifyDiscord() {
+            document.getElementById('verifySection').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
